@@ -1,4 +1,7 @@
-﻿#include <iostream>
+//Программа корректно считает и время в течение суток, и время поездки с прибытием на следующий день.
+//Обеспечен контроль ввода и по длине строк, и по вводимым символам.
+
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -64,38 +67,33 @@ int main() {
 	conversion4 = { arrival[3],arrival[4] };	minutes1 = stoi(conversion4);
 		
 		if (hours > hours1) {
+			
 			for (h = 0; hours < 24; hours++) {
 				h++;
 			}h += hours1;
+			
 			if (minutes == 0 && minutes1 == 59) {
 				m = minutes1;
 				std::cout <<"Поездка составила: "<<h<<" ч."<<m<<" м.";
-			}
-			else if (minutes > 0 && minutes1 == 59) {
+			}else if (minutes > 0 && minutes1 == 59) {
 				m = minutes1 - minutes;
 				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
-			}
-			else if(minutes>minutes1){
+			}else if(minutes>minutes1){
 				m = 60 - minutes;
 				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
-			}
-			else {
+			}else {
 				m = 60 - minutes1;
 				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
 			}
-		}
-		else {
+		
+		}else {
 			h = hours1 - hours;
 			if (minutes > minutes1) {
 				m = minutes - minutes1;
 				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
-			}
-			else {
+			}else {
 				m = minutes1 - minutes;
 				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
 			}
 		}
-
-
-	
 }
