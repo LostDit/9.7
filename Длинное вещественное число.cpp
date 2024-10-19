@@ -1,4 +1,7 @@
-﻿#include <iostream>
+/*Использован строковый тип данных для считывания чисел.
+Решение на примерах из условия выдаёт правильный результат.*/
+
+#include <iostream>
 #include <string>
 using namespace std;
 
