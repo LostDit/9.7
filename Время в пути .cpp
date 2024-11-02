@@ -3,97 +3,68 @@
 
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
 	setlocale(LC_ALL, "Russian");
-	std::string departure, arrival, conversion1, conversion2, conversion3, conversion4;
-	bool chek = false, out = false;
-	while (true) {
-		system("cls");
-		if (chek == true) { std::cout << "Ошибка! Введите ещё раз\n "; chek = false; }
-		std::cout << "Введите время отбытия поезда (HH:MM): ";
-		getline(std::cin, departure);
-		while (true) {
-			if (departure[2] != ':' || departure.length() > 5) {
-				chek = true;
-				break;
-			}else if (departure[0] > '2' || departure[0] < '0') {
-				chek = true;
-				break;
-			}else if (departure[0] == '2' && departure[1]>'3' || departure[1] < '0') {
-				chek = true;
-				break;
-			}else if (departure[3] > '5' || departure[3] < '0') {
-				chek = true;
-				break;
-			}else if (departure[4] > '9' || departure[4] < '0') {
-				chek = true;
-				break;
-			}else { out = true; break; }
-		}if (out == true) { break; }
-	}
-	out = false;
-	while (true) {
-		system("cls");
-		if (chek == true) { std::cout << "Ошибка! Введите ещё раз\n "; chek = false; }
-		std::cout << "Введите время прибытия поезда (HH:MM): ";
-		getline(std::cin, arrival);
-		while (true) {
-			if (arrival[2] != ':' || arrival.length() > 5) {
-				chek = true;
-				break;
-			}else if (arrival[0] > '2' || arrival[0] < '0') {
-				chek = true;
-				break;
-			}else if (arrival[0] == '2' && arrival[1] > '3' || arrival[1] < '0') {
-				chek = true;
-				break;
-			}else if (arrival[3] > '5' || arrival[3] < '0') {
-				chek = true;
-				break;
-			}else if (arrival[4] > '9' || arrival[4] < '0') {
-				chek = true;
-				break;
-			}else { out = true; break; }
-		}if (out == true) { break; }
-	}
-	int hours, hours1, minutes, minutes1,h,m;
+	std::string stroka1,stroka2, conversion1,conversion2,conversion3,conversion4;
+	bool chek = true,out =true;
 	
-	conversion1 = { departure[0],departure[1] };	hours = stoi(conversion1);
-	conversion2 = { departure[3],departure[4] };	minutes = stoi(conversion2);
+	while (out) {
 
-	conversion3 = { arrival[0],arrival[1] };	hours1 = stoi(conversion3);
-	conversion4 = { arrival[3],arrival[4] };	minutes1 = stoi(conversion4);
-		
-		if (hours > hours1) {
-			
-			for (h = 0; hours < 24; hours++) {
-				h++;
-			}h += hours1;
-			
-			if (minutes == 0 && minutes1 == 59) {
-				m = minutes1;
-				std::cout <<"Поездка составила: "<<h<<" ч."<<m<<" м.";
-			}else if (minutes > 0 && minutes1 == 59) {
-				m = minutes1 - minutes;
-				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
-			}else if(minutes>minutes1){
-				m = 60 - minutes;
-				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
-			}else {
-				m = 60 - minutes1;
-				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
-			}
-		
+		system("cls");
+		chek == false ? std::cout << "Ошибка! Введите ещё раз время отправления (HH:MM): " : std::cout << "Введите время отправления (HH:MM): "; chek = true;
+		getline(std::cin, stroka1);
+
+		if (stroka1.length() != 5) {
+			chek = false;
+		}else if (stroka1[0] < '0' || stroka1[0]>'9') {
+			chek = false;
+		}else if (stroka1[1] < '0' || stroka1[1]>'9') {
+			chek = false;
+		}else if (stroka1[2] != ':') {
+			chek = false;
+		}else if (stroka1[3] < '0' || stroka1[3]>'9') {
+			chek = false;
+		}else if (stroka1[4] < '0' || stroka1[4]>'9') {
+			chek = false;
 		}else {
-			h = hours1 - hours;
-			if (minutes > minutes1) {
-				m = minutes - minutes1;
-				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
-			}else {
-				m = minutes1 - minutes;
-				std::cout << "Поездка составила: " << h << " ч." << m << " м.";
-			}
+			out = false;
 		}
+
+	}
+	
+	out = true;
+	
+	while (out) {
+
+		system("cls");
+		chek == false ? std::cout << "Ошибка! Введите ещё раз время прибытия (HH:MM): " : std::cout << "Введите время прибытия (HH:MM): "; chek = true;
+		getline(std::cin, stroka2);
+
+		if (stroka2.length() != 5) {
+			chek = false;
+		}else if (stroka2[0] < '0' || stroka2[0]>'9') {
+			chek = false;
+		}else if (stroka2[1] < '0' || stroka2[1]>'9') {
+			chek = false;
+		}else if (stroka2[2] != ':') {
+			chek = false;
+		}else if (stroka2[3] < '0' || stroka2[3]>'9') {
+			chek = false;
+		}else if (stroka2[4] < '0' || stroka2[4]>'9') {
+			chek = false;
+		}else {
+			out = false;
+		}
+
+	}
+	
+	int hours, hours1, minutes, minutes1, h, h1;
+	conversion1 = { stroka1[0],stroka1[1] };	hours = stoi(conversion1); conversion3 = { stroka2[0],stroka2[1] };	hours1 = stoi(conversion3);
+	conversion2 = { stroka1[3],stroka1[4] };	minutes = stoi(conversion2); conversion4 = { stroka2[3],stroka2[4] };	minutes1 = stoi(conversion4);
+	
+	h = hours * 60 + minutes;
+	h1 = hours1 * 60 + minutes1;
+	std::cout << (h > h1 ? "Поездка составила " + std::to_string((24 * 60 - h + h1) / 60) + "ч. " + std::to_string((24 * 60 - h + h1) % 60) + "м.\n" : "Поездка составила " + std::to_string((h1 - h) / 60) + "ч. " + std::to_string((h1 - h) % 60) + "м.\n");
+
 }
